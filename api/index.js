@@ -1,7 +1,8 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
- import userRoutes from './routes/user.route.js';
+import userRoutes from './routes/user.route.js';
+import authRoutes from './routes/auth.route.js';
 
 dotenv.config();
 
@@ -17,6 +18,8 @@ mongoose.connect(process.env.MONGO)
 
 const app = express();
 
+app.use(express.json());
+
 // Your code goes here
 
 app.listen(3000, () => {
@@ -25,4 +28,4 @@ app.listen(3000, () => {
 
 // create a test API route 
 app.use('/api/user', userRoutes);
-
+app.use('/api/auth', authRoutes);
