@@ -29,3 +29,15 @@ app.listen(3000, () => {
 // create a test API route 
 app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
+
+
+// create middleware
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const message = err.message || 'Internet Server Error';
+  res.status(statusCode).json({
+    success: false,
+    statusCode,
+    message
+  });
+})
