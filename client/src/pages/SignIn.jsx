@@ -4,12 +4,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { HiMail } from "react-icons/hi";
 import logo from '../assets/logo.png';
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { signInStart, signInSuccess, signInFailure } from "../redux/user/userSlice";
 // import validator from 'validator';
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const {loading, error: errorMessage} = useSelector(state => state.user);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
     username: '',
@@ -37,20 +39,19 @@ export default function SignIn() {
     //  const form = e.target;
     //  form.submit();
     if (!formData.email || !formData.password) {
-      return setErrorMessage('Please fill in all fields');
+      return dispatch(signInFailure('All fields are required'));
     }
     // validation code for password
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/;
     if (!emailRegex.test(formData.email)) {
-      return setErrorMessage('Invalid email format');
+      return dispatch(signInFailure('Invalid email address'));
     }
     if (!passwordRegex.test(formData.password)) {
-      return setErrorMessage('Password must be at least 8 characters, including letters and numbers');
+      return dispatch(signInFailure('invalid password'));
     }
     try {
-      setLoading(true);
-      setErrorMessage(null);
+      dispatch(signInStart());
       const res = await fetch('/api/auth/signin', {
         method: 'POST',
         headers: {
@@ -60,15 +61,14 @@ export default function SignIn() {
       });
       const data = await res.json();
       if (data.success === false) {
-        return setErrorMessage(data.message);
+        dispatch(signInFailure(data.message));
       }
-      setLoading(false);
       if(res.ok) {
+        dispatch(signInSuccess(data));
         navigate('/');
       }
     } catch (error) {
-      setErrorMessage(error.message);
-      setLoading(false);
+      dispatch(signInFailure(error.message));
     }
   };
   return (
