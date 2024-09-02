@@ -114,7 +114,7 @@ export default function SignIn() {
               <Label htmlFor="remember">Remember me</Label>
             </div>
           </div>
-            <Button gradientDuoTone='purpleToBlue' type='submit' disable={loading}>
+            <Button gradientDuoTone='purpleToBlue' type='submit' disabled={loading}>
               {loading ? (
                 <>
                 <Spinner size='sm' />
