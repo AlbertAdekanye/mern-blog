@@ -13,7 +13,7 @@ export default function Header() {
     <Navbar className='border-b-2'>
       {/* link from react router-dom */}
       <Link to="/" className='self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white'>
-        <span className='px-2 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg text-white'>The Tech Chronicles</span>
+        <span className='px-2 py-1 bg-gradient-to-r from-green-800 via-green-500 to-green-200 rounded-lg text-white'>The Tech Chronicles</span>
       </Link>
       {/* search input */}
       <form>
@@ -32,7 +32,7 @@ export default function Header() {
           <FaMoon />
         </Button>
         <Link to='/signin'>
-          <Button gradientDuoTone='purpleToBlue' outline>
+          <Button outline>
             Sign In
           </Button>
         </Link>
