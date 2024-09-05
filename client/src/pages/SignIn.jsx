@@ -112,7 +112,9 @@ export default function SignIn() {
             />
             <div className="flex items-center gap-2 mt-2">
               <Checkbox id="remember" />
-              <Label htmlFor="remember">Remember me</Label>
+              <Label htmlFor="remember">
+                Remember me
+              </Label>
             </div>
           </div>
             <Button type='submit' disabled={loading} outline>
