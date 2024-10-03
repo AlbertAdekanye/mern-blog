@@ -31,13 +31,13 @@ export default function OAuth() {
       }
     } catch (error) { 
       console.log(error);
-      
+       
     }
   }
   return (
     <Button type='button' outline onClick={handleGoogleClick}>
       <AiFillGoogleCircle  className='w-6 h-6 mr-2'/>
-      Sign In with Google
+        Continue with Google
     </Button>
   )
 }
