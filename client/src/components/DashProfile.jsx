@@ -232,12 +232,14 @@ export default function DashProfile() {
         >
           {loading ? 'Loading...' : 'Update'}
         </Button>
+        {/* create post */}
         {currentUser.isAdmin && (
           <Link to={'/create-post'}>
             <Button
               type='button'
-              gradientDuoTone='purpleToPink'
               className='w-full'
+              outline
+              color='gray'
             >
               Create a post
             </Button>
