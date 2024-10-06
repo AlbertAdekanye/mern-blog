@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Alert, Button, FileInput, Select, TextInput } from 'flowbite-react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
